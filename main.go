@@ -7,14 +7,26 @@ import (
 	"os"
 )
 
+const CurrentVersion = "v1.0.1"
+
+type mainOpts struct {
+	cli.Helper2
+	Version bool `cli:"!v,version" usage:"Version of the command line tool"`
+}
+
 var (
 	cmdRoot = &cli.Command{
 		Desc: "Command line tool of Lambda Blockchain.",
 		Argv: func() interface{} {
-			return new(cli.Helper2)
+			return new(mainOpts)
 		},
 		Fn: func(ctx *cli.Context) error {
-			ctx.String(ctx.Usage())
+			argv := ctx.Argv().(*mainOpts)
+			if argv.Version {
+				ctx.String("%s\n", CurrentVersion)
+			} else {
+				ctx.String(ctx.Usage())
+			}
 			return nil
 		},
 	}
