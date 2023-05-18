@@ -22,7 +22,7 @@ var CmdConvert = &cli.Command{
 	Fn: func(ctx *cli.Context) error {
 		argv := ctx.Argv().(*addressOpts)
 		if 0 == len(argv.Addr) {
-			return errors.New("address list length is 0")
+			return errors.New("address length is 0")
 		}
 		result, err := convert(argv.Addr)
 		if nil != err {
