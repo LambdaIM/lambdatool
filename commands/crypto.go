@@ -5,6 +5,7 @@ import (
 	"crypto/aes"
 	"crypto/cipher"
 	"encoding/base64"
+	"errors"
 	"github.com/mkideal/cli"
 )
 
@@ -23,6 +24,9 @@ var (
 		},
 		Fn: func(ctx *cli.Context) error {
 			argv := ctx.Argv().(*cryptoOpts)
+			if 0 == len(argv.Data) {
+				return errors.New("raw data length is 0")
+			}
 			result, err := encrypt(argv)
 			if nil != err {
 				return err
@@ -39,6 +43,9 @@ var (
 		},
 		Fn: func(ctx *cli.Context) error {
 			argv := ctx.Argv().(*cryptoOpts)
+			if 0 == len(argv.Data) {
+				return errors.New("raw data length is 0")
+			}
 			result, err := decrypt(argv)
 			if nil != err {
 				return err

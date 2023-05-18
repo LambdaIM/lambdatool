@@ -24,6 +24,7 @@ func main() {
 	err := cli.Root(cmdRoot,
 		cli.Tree(commands.CmdEncrypt),
 		cli.Tree(commands.CmdDecrypt),
+		cli.Tree(commands.CmdConvert),
 	).Run(os.Args[1:])
 	if nil != err {
 		_, _ = fmt.Fprintln(os.Stderr, err)
