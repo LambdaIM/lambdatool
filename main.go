@@ -25,6 +25,7 @@ func main() {
 		cli.Tree(commands.CmdEncrypt),
 		cli.Tree(commands.CmdDecrypt),
 		cli.Tree(commands.CmdConvert),
+		cli.Tree(commands.CmdMD5),
 	).Run(os.Args[1:])
 	if nil != err {
 		_, _ = fmt.Fprintln(os.Stderr, err)
